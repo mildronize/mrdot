@@ -1,0 +1,71 @@
+set nocompatible 		    " use vim, not vi api
+set t_Co=256 			    " support screen-256color
+
+" disable auto comment insert
+autocmd FileType * setlocal formatoptions-=cro
+
+" Formating
+
+set nowrap                      " Do not wrap long lines
+set autoindent                  " Indent at the same level of the previous line
+set shiftwidth=4                " Use indents of 4 spaces
+set expandtab                   " Tabs are spaces, not tabs
+set tabstop=4                   " An indentation every four columns
+set softtabstop=4               " Let backspace delete indent
+set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+set splitright                  " Puts new vsplit windows to the right of the current
+set splitbelow                  " Puts new split windows to the bottom of the current
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+
+" Change the matches brackets with red bold
+highlight MatchParen cterm=bold ctermfg=red
+
+set noswapfile			" no swap file
+set cursorline			" show a visual line under the cursor's current line.
+
+"About Search
+set incsearch
+set hlsearch
+
+"Syntax Color
+syntax on
+
+"Show line number
+set nu
+
+"Automatically indent
+set smartindent
+
+"About Tab
+set smarttab
+
+"Use UTF-8.
+set encoding=utf8
+
+" set enable spelling check
+au FileType tex set spell spelllang=en_us
+au FileType liquid set spell spelllang=en_us
+
+" set PEP8
+au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+
+" run autoPEP8
+" set autoread
+" au BufWritePost *.py silent call AutoPEP8()
+" " nnoremap <leader>pp :call AutoPEP8()<CR>
+" function AutoPEP8()
+    " silent execute '!autopep8 --in-place --aggressive --aggressive '.expand("%")
+" endfunction
+
+" Status bar
+
+set laststatus=2  " always show the status bar
+" Start the status line
+set statusline=%f\ %m\ %r
+set statusline+=Line:%l/%L[%p%%]
+set statusline+=Col:%v
+set statusline+=Buf:#%n
+set statusline+=[%b][0x%B]
+
+set background=dark         " Assume a dark background"

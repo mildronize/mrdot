@@ -1,0 +1,113 @@
+"change <Leader> / to space
+let mapleader = " "
+
+set pastetoggle=<F3>           " pastetoggle (sane indentation on pastes)
+
+" Map quick resize splits more quickly
+" Orignal from http://vim.wikia.com/wiki/Resize_splits_more_quickly
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+nnoremap <silent> <Leader>> :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>< :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+
+" Section jump in Latex
+" Original from http://vim.wikia.com/wiki/Section_jump_in_Latex
+map <silent> ]s :/\\\(sub\)\{,2}section\s*{<CR> :noh<CR>
+map <silent> [s :?\\\(sub\)\{,2}section\s*{<CR> :noh<CR>
+
+
+" Remap tagbar openAutoClose
+nnoremap <silent> <leader>Y :TagbarOpenAutoClose<CR>
+
+" Remap tagbar openAutoClose
+nnoremap <silent> <leader>y :TagbarToggle<CR>
+
+" Toggle word wrapping
+nnoremap <silent> <Leader>w :set wrap! linebreak!<CR>
+
+" Work with Tab
+" Use H and L to move to the previous/next tabpage.
+nnoremap H gT
+nnoremap L gt
+
+" Work with buffer
+nnoremap <silent> <Leader>l :bnext<CR>
+nnoremap <silent> <Leader>h :bprev<CR>
+
+" Remove a space at the last of whole file
+" For unix system
+" nnoremap <silent> <Leader>rs :%s/ \n/\r/gc<CR>
+
+
+"Mapp jk to <ESC>
+inoremap jk <ESC>
+inoremap kj <ESC>
+
+"About Search
+set incsearch
+set hlsearch
+
+" use motion work with display line
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+nnoremap $ g$
+nnoremap ^ g^
+nnoremap 0 g0
+
+"move between windows
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+"Mute Highlighting
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+" <Leader>hs to toggle highlight.
+" http://stackoverflow.com/a/16730877
+let hlstate=0
+nnoremap <silent> <Leader>hs :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+
+" From spf13
+" Allow to trigger background
+function! ToggleBG()
+    let s:tbg = &background
+    " Inversion
+    if s:tbg == "dark"
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+noremap <leader>bg :call ToggleBG()<CR>
+
+" Run out the brackets"
+inoremap <C-l> <C-o>A
+
+" Automatically set paste mode in Vim when pasting in insert mode {
+    " https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
+    function! WrapForTmux(s)
+      if !exists('$TMUX')
+        return a:s
+      endif
+
+      let tmux_start = "\<Esc>Ptmux;"
+      let tmux_end = "\<Esc>\\"
+
+      return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+    endfunction
+
+    let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+    let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+    function! XTermPasteBegin()
+      set pastetoggle=<Esc>[201~
+      set paste
+      return ""
+    endfunction
+
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+" }
