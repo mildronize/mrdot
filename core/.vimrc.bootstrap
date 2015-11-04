@@ -1,3 +1,0 @@
-if filereadable(expand("~/.mrdot/core/.vimrc"))
-    source ~/.mrdot/core/.vimrc
-endif

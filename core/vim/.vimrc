@@ -1,6 +1,6 @@
 " Add Main key
-if filereadable(expand("~/.mrdot/core/.vimrc.keys"))
-	source ~/.mrdot/core/.vimrc.keys
+if filereadable(expand("~/.mrdot/core/vim/.vimrc.keys"))
+	source ~/.mrdot/core/vim/.vimrc.keys
 endif
 
 " Plugin Management
@@ -44,7 +44,7 @@ for file in split(glob('~/.mrdot/core/vim/plugins/*.vim'), '\n')
     exe 'source' file
 endfor
 
-if filereadable(expand("~/.mrdot/core/.vimrc.after"))
-	source ~/.mrdot/core/.vimrc.after
+if filereadable(expand("~/.mrdot/core/vim/.vimrc.after"))
+	source ~/.mrdot/core/vim/.vimrc.after
 endif
 

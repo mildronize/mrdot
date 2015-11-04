@@ -7,7 +7,7 @@ MRDOT_PATH=$HOME/.mrdot
 
 
 #run `mrdot init`
-cp $MRDOT_PATH/core/.vimrc.bootstrap $HOME/.vimrc 
+cp $MRDOT_PATH/core/vim/.vimrc.bootstrap $HOME/.vimrc 
 #    - copy .vimrc to $HOME
 #    - copy .zshrc to $HOME
 #    - copy .tmux.conf to $HOME
